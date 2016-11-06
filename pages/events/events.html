@@ -1,0 +1,14 @@
+<ion-header color="primary">
+    <ion-navbar>
+        <ion-title>
+            <img src="http://dsykes.net16.net/lyfrlogo.png" alt=""  width="60" height="50"/>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <div *ngFor="let event of events">
+        <ion-card>
+            <p>{{ event.title }}</p>
+        </ion-card>
+    </div>
+</ion-content>
