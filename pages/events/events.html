@@ -6,9 +6,29 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
+    <ion-card *ngIf="city">
+        <p>{{ city }}</p>
+        <p>{{ area }}</p>
+    </ion-card>
     <div *ngFor="let event of events">
-        <ion-card>
-            <p>{{ event.title }}</p>
+        <ion-card [style.background]="white">
+            <img src="{{ event.picture }}">
+            <ion-item>
+                <p>{{ event.info }}</p>
+            </ion-item>
+            <ion-item>
+                <ion-icon item-left large>{{ event.icon }}</ion-icon>
+                <h2>Museum of Football</h2>
+                <p>11 N. Way St, Madison, WI 53703</p>
+            </ion-item>
+            <ion-item>
+                <span item-left>18 min</span>
+                <span item-left>(2.6 mi)</span>
+                <button primary clear item-right>
+                <ion-icon name="navigate"></ion-icon>
+                Start
+                </button>
+            </ion-item>
         </ion-card>
     </div>
 </ion-content>

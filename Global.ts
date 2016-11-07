@@ -1,4 +1,5 @@
 import {Http} from '@angular/http';
+import {Geolocation} from 'ionic-native';
 import 'rxjs/add/operator/map';
 
 export class Global{
@@ -8,8 +9,28 @@ export class Global{
     db_password: string = 'maxwel123';
     user: any;
 
+    // Location Variables
+    lat: any;
+    lng: any;
+    city: any;
+    area: any;
+    
     constructor(public http: Http){
+    
+        this.getLatLng().then(data => {
+            this.lat = data.coords.latitude;
+            this.lng = data.coords.longitude;
+        });
+    }
 
+    getLatLng(){
+        let options = {maximumAge: 0, timeout: 5000, enableHighAccuracy: true};
+        return Geolocation.getCurrentPosition(options);
+    }
+    
+    getPosInfo(){
+        return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+this.lat+','+this.lng+'',null)
+            .map(res => res.json());
     }
 
     getAllData(db){
